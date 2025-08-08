@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pra.ween Chouhan</title>
+<style>
+    body {
+        background: black;
+        color: #00ff00;
+        font-family: monospace;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    #matrix {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .typewriter {
+        font-size: 2rem;
+        border-right: 3px solid #00ff00;
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 4s steps(30, end), blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+    @keyframes blink {
+        50% { border-color: transparent }
+    }
+    a {
+        color: #00ff00;
+        text-decoration: none;
+        font-size: 1.2rem;
+        display: block;
+        margin-top: 10px;
+        transition: color 0.3s;
+    }
+    a:hover {
+        color: white;
+    }
+</style>
+</head>
+<body>
 
+<canvas id="matrix"></canvas>
+
+<div class="center">
+    <div class="typewriter">Welcome to Pra.ween Chouhan</div>
+    <a href="https://t.me/+IoSEt41oYbIzNDM1" target="_blank">Telegram</a>
+    <a href="https://www.instagram.com/pra.ween_chouhan_" target="_blank">Instagram</a>
+    <a href="https://github.com/praweenchouhan1004" target="_blank">GitHub</a>
+</div>
+
+<script>
+// Matrix effect
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0F0';
+    ctx.font = fontSize + 'px monospace';
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+        drops[i]++;
+    }
+}
+setInterval(draw, 35);
+</script>
+
+</body>
+</html>
